@@ -75,7 +75,7 @@ export const vlogs = [
         id: 6,
         title: "Dairy Farming Basics",
         farmer: "Mohan Sharma",
-        thumbnail: "https://images.unsplash.com/photo-1516467508483-a7212febe31a?w=800&h=450&fit=crop",
+        thumbnail: "",
         cropType: "Livestock",
         location: "Rajasthan",
         duration: "16:45",
