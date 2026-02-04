@@ -78,23 +78,23 @@ const AdminDashboard = () => {
         <div className="space-y-6">
             {/* Header */}
             <div>
-                <h1 className="text-3xl font-bold text-gray-900">Dashboard Overview</h1>
-                <p className="text-gray-600 mt-1">Welcome to Farm Frontier Admin Panel</p>
+                <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Dashboard Overview</h1>
+                <p className="text-sm sm:text-base text-gray-600 mt-1">Welcome to Farm Frontier Admin Panel</p>
             </div>
 
             {/* Stats Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
                 {statCards.map((stat) => {
                     const Icon = stat.icon;
                     return (
-                        <Card key={stat.title} className="p-6">
+                        <Card key={stat.title} className="p-4 sm:p-6">
                             <div className="flex items-center justify-between">
                                 <div>
-                                    <p className="text-sm font-medium text-gray-600">{stat.title}</p>
-                                    <p className="text-3xl font-bold text-gray-900 mt-2">{stat.value}</p>
+                                    <p className="text-xs sm:text-sm font-medium text-gray-600">{stat.title}</p>
+                                    <p className="text-2xl sm:text-3xl font-bold text-gray-900 mt-2">{stat.value}</p>
                                 </div>
-                                <div className={`${stat.bgColor} p-3 rounded-lg`}>
-                                    <Icon className={`h-6 w-6 ${stat.color.replace('bg-', 'text-')}`} />
+                                <div className={`${stat.bgColor} p-2 sm:p-3 rounded-lg`}>
+                                    <Icon className={`h-5 w-5 sm:h-6 sm:w-6 ${stat.color.replace('bg-', 'text-')}`} />
                                 </div>
                             </div>
                         </Card>
@@ -103,29 +103,29 @@ const AdminDashboard = () => {
             </div>
 
             {/* Quick Actions */}
-            <Card className="p-6">
-                <h2 className="text-xl font-semibold text-gray-900 mb-4">Quick Actions</h2>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <Card className="p-4 sm:p-6">
+                <h2 className="text-lg sm:text-xl font-semibold text-gray-900 mb-4">Quick Actions</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
                     <a
                         href="/admin/products"
-                        className="flex items-center space-x-3 p-4 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors"
+                        className="flex items-center space-x-3 p-3 sm:p-4 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors"
                     >
-                        <ShoppingBag className="h-6 w-6 text-blue-600" />
-                        <span className="font-medium text-blue-900">Manage Products</span>
+                        <ShoppingBag className="h-5 w-5 sm:h-6 sm:w-6 text-blue-600 flex-shrink-0" />
+                        <span className="font-medium text-sm sm:text-base text-blue-900">Manage Products</span>
                     </a>
                     <a
                         href="/admin/vlogs"
-                        className="flex items-center space-x-3 p-4 bg-purple-50 hover:bg-purple-100 rounded-lg transition-colors"
+                        className="flex items-center space-x-3 p-3 sm:p-4 bg-purple-50 hover:bg-purple-100 rounded-lg transition-colors"
                     >
-                        <Video className="h-6 w-6 text-purple-600" />
-                        <span className="font-medium text-purple-900">Manage Vlogs</span>
+                        <Video className="h-5 w-5 sm:h-6 sm:w-6 text-purple-600 flex-shrink-0" />
+                        <span className="font-medium text-sm sm:text-base text-purple-900">Manage Vlogs</span>
                     </a>
                     <a
                         href="/admin/articles"
-                        className="flex items-center space-x-3 p-4 bg-green-50 hover:bg-green-100 rounded-lg transition-colors"
+                        className="flex items-center space-x-3 p-3 sm:p-4 bg-green-50 hover:bg-green-100 rounded-lg transition-colors sm:col-span-2 lg:col-span-1"
                     >
-                        <BookOpen className="h-6 w-6 text-green-600" />
-                        <span className="font-medium text-green-900">Manage Articles</span>
+                        <BookOpen className="h-5 w-5 sm:h-6 sm:w-6 text-green-600 flex-shrink-0" />
+                        <span className="font-medium text-sm sm:text-base text-green-900">Manage Articles</span>
                     </a>
                 </div>
             </Card>

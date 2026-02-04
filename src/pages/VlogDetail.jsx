@@ -5,6 +5,36 @@ import Badge from '../components/ui/Badge';
 import { ThumbsUp, MessageCircle, Share2, Bookmark, ArrowLeft, Clock, Eye, User } from 'lucide-react';
 import { vlogsAPI } from '../services/api';
 
+// Helper function to convert YouTube URL to embed URL
+const getYouTubeEmbedUrl = (url) => {
+    if (!url) return null;
+
+    // Already an embed URL
+    if (url.includes('youtube.com/embed/')) {
+        return url;
+    }
+
+    // Extract video ID from various YouTube URL formats
+    let videoId = null;
+
+    // Format: https://www.youtube.com/watch?v=VIDEO_ID
+    if (url.includes('youtube.com/watch')) {
+        const urlParams = new URLSearchParams(url.split('?')[1]);
+        videoId = urlParams.get('v');
+    }
+    // Format: https://youtu.be/VIDEO_ID
+    else if (url.includes('youtu.be/')) {
+        videoId = url.split('youtu.be/')[1].split('?')[0];
+    }
+    // Format: https://www.youtube.com/embed/VIDEO_ID
+    else if (url.includes('youtube.com/embed/')) {
+        videoId = url.split('embed/')[1].split('?')[0];
+    }
+
+    // Return embed URL if video ID found
+    return videoId ? `https://www.youtube.com/embed/${videoId}` : url;
+};
+
 const VlogDetail = () => {
     const { id } = useParams();
     const navigate = useNavigate();
@@ -72,10 +102,11 @@ const VlogDetail = () => {
                     <div className="aspect-video bg-gray-900 flex items-center justify-center">
                         {vlog.videoUrl ? (
                             <iframe
-                                src={vlog.videoUrl}
+                                src={getYouTubeEmbedUrl(vlog.videoUrl)}
                                 title={vlog.title}
                                 className="w-full h-full"
                                 allowFullScreen
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             />
                         ) : (
                             <img

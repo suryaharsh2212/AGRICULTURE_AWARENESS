@@ -51,7 +51,7 @@ const Vlogs = () => {
                     <h1 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-2">
                         Farming Vlogs
                     </h1>
-                    
+
                 </div>
 
                 {error && (
@@ -67,8 +67,8 @@ const Vlogs = () => {
                             key={category}
                             onClick={() => setActiveCategory(category)}
                             className={`px-4 py-2 rounded-lg font-medium transition-all duration-200 ${activeCategory === category
-                                    ? 'bg-primary-600 text-white'
-                                    : 'bg-white text-gray-600 hover:bg-gray-50 border border-gray-300'
+                                ? 'bg-primary-600 text-white'
+                                : 'bg-white text-gray-600 hover:bg-gray-50 border border-gray-300'
                                 }`}
                         >
                             {category}
