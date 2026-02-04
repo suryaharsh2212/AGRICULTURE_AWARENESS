@@ -15,23 +15,21 @@ const Footer = () => {
     const supportLinks = [
         { name: 'Help Center', path: '#' },
         { name: 'Contact Us', path: '#' },
-        { name: 'FAQs', path: '#' },
-        { name: 'Terms of Service', path: '#' },
+        // { name: 'FAQs', path: '#' },
+        // { name: 'Terms of Service', path: '#' },
     ];
 
     const socialLinks = [
-        { name: 'Facebook', icon: Facebook, url: '#' },
-        { name: 'Twitter', icon: Twitter, url: '#' },
-        { name: 'Instagram', icon: Instagram, url: '#' },
-        { name: 'YouTube', icon: Youtube, url: '#' },
+        { name: 'Facebook', icon: Facebook, url: 'https://www.facebook.com/share/1GRVvG3nfy/', target: '_blank' },
+        // { name: 'Twitter', icon: Twitter, url: '#' },
+        { name: 'Instagram', icon: Instagram, url: 'https://www.instagram.com/farm_frontier?igsh=MXhsOXZzdnYycnIxZA==', target: '_blank' },
+        { name: 'YouTube', icon: Youtube, url: 'https://youtube.com/@farm_frontier?si=iTzqFfcxxf6V70jN', target: '_blank' },
     ];
 
     const languages = [
         { code: 'en', name: 'English' },
         { code: 'hi', name: 'हिंदी' },
-        { code: 'ta', name: 'தமிழ்' },
-        { code: 'te', name: 'తెలుగు' },
-        { code: 'kn', name: 'ಕನ್ನಡ' },
+        
     ];
 
     return (
@@ -45,7 +43,7 @@ const Footer = () => {
                                 <Sprout className="h-6 w-6 text-white" />
                             </div>
                             <span className="text-xl font-display font-bold text-white">
-                                AgriLearn
+                                Farm Frontier
                             </span>
                         </div>
                         <p className="text-sm text-gray-400">
@@ -54,15 +52,15 @@ const Footer = () => {
                         <div className="space-y-2">
                             <div className="flex items-center space-x-2 text-sm">
                                 <Mail className="h-4 w-4 text-primary-500" />
-                                <span>support@agrilearn.com</span>
+                                <span>farmfrontier182@gmail.com</span>
                             </div>
                             <div className="flex items-center space-x-2 text-sm">
                                 <Phone className="h-4 w-4 text-primary-500" />
-                                <span>+91 1800-XXX-XXXX</span>
+                                <span>+91 8092672957</span>
                             </div>
                             <div className="flex items-center space-x-2 text-sm">
                                 <MapPin className="h-4 w-4 text-primary-500" />
-                                <span>New Delhi, India</span>
+                                <span>Ormanjhi Ranchi, Jharkhand, India</span>
                             </div>
                         </div>
                     </div>
@@ -140,7 +138,7 @@ const Footer = () => {
 
                 {/* Bottom Bar */}
                 <div className="mt-8 pt-8 border-t border-secondary-800 text-center text-sm text-gray-400">
-                    <p>&copy; {new Date().getFullYear()} AgriLearn. All rights reserved.</p>
+                    <p>&copy; {new Date().getFullYear()} Farm Frontier. All rights reserved.</p>
                 </div>
             </div>
         </footer>

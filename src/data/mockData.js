@@ -132,6 +132,7 @@ export const products = [
         inStock: true,
         description: "Disease-resistant hybrid tomato variety"
     },
+
     {
         id: 5,
         name: "Neem Oil Pesticide (1L)",
@@ -143,6 +144,7 @@ export const products = [
         inStock: true,
         description: "Natural pest control solution"
     },
+
     {
         id: 6,
         name: "Garden Tiller Machine",

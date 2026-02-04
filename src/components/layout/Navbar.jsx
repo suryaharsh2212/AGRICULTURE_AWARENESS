@@ -11,7 +11,6 @@ const Navbar = () => {
         { name: 'Vlogs', path: '/vlogs', icon: Video },
         { name: 'Awareness', path: '/awareness', icon: BookOpen },
         { name: 'Marketplace', path: '/marketplace', icon: ShoppingBag },
-        { name: 'Dashboard', path: '/dashboard', icon: User },
     ];
 
     const isActive = (path) => location.pathname === path;
@@ -26,7 +25,7 @@ const Navbar = () => {
                             <Sprout className="h-6 w-6 text-white" />
                         </div>
                         <span className="text-xl font-display font-bold text-gray-900">
-                            AgriLearn
+                            Farm Frontier
                         </span>
                     </Link>
 
@@ -51,6 +50,15 @@ const Navbar = () => {
                                 </Link>
                             );
                         })}
+
+                        {/* Admin Link */}
+                        <Link
+                            to="/admin/login"
+                            className="flex items-center space-x-1 px-4 py-2 rounded-lg font-medium transition-all duration-200 text-gray-600 hover:bg-gray-50 hover:text-gray-900 border border-gray-300"
+                        >
+                            <User className="h-4 w-4" />
+                            <span>Admin</span>
+                        </Link>
                     </div>
 
                     {/* Mobile menu button */}
@@ -87,6 +95,16 @@ const Navbar = () => {
                                 </Link>
                             );
                         })}
+
+                        {/* Admin Link */}
+                        <Link
+                            to="/admin/login"
+                            onClick={() => setIsOpen(false)}
+                            className="flex items-center space-x-2 px-3 py-2 rounded-lg font-medium transition-all duration-200 text-gray-600 hover:bg-gray-50 hover:text-gray-900 border border-gray-300"
+                        >
+                            <User className="h-5 w-5" />
+                            <span>Admin</span>
+                        </Link>
                     </div>
                 </div>
             )}

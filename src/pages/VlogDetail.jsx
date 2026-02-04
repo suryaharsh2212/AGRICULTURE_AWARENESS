@@ -1,19 +1,49 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { vlogs } from '../data/mockData';
 import Button from '../components/ui/Button';
 import Badge from '../components/ui/Badge';
-import { ThumbsUp, MessageCircle, Share2, Bookmark, ArrowLeft, MapPin, Clock, Eye } from 'lucide-react';
+import { ThumbsUp, MessageCircle, Share2, Bookmark, ArrowLeft, Clock, Eye, User } from 'lucide-react';
+import { vlogsAPI } from '../services/api';
 
 const VlogDetail = () => {
     const { id } = useParams();
     const navigate = useNavigate();
-    const vlog = vlogs.find((v) => v.id === parseInt(id));
-
+    const [vlog, setVlog] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
     const [liked, setLiked] = useState(false);
     const [saved, setSaved] = useState(false);
 
-    if (!vlog) {
+    useEffect(() => {
+        fetchVlog();
+    }, [id]);
+
+    const fetchVlog = async () => {
+        try {
+            setLoading(true);
+            const response = await vlogsAPI.getById(id);
+            setVlog(response.data);
+            setError(null);
+        } catch (err) {
+            setError('Failed to load vlog');
+            console.error('Error fetching vlog:', err);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    if (loading) {
+        return (
+            <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+                <div className="text-center">
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto"></div>
+                    <p className="mt-4 text-gray-600">Loading vlog...</p>
+                </div>
+            </div>
+        );
+    }
+
+    if (error || !vlog) {
         return (
             <div className="min-h-screen bg-gray-50 flex items-center justify-center">
                 <div className="text-center">
@@ -40,11 +70,20 @@ const VlogDetail = () => {
                 {/* Video Player */}
                 <div className="bg-white rounded-xl shadow-soft overflow-hidden mb-6">
                     <div className="aspect-video bg-gray-900 flex items-center justify-center">
-                        <img
-                            src={vlog.thumbnail}
-                            alt={vlog.title}
-                            className="w-full h-full object-cover"
-                        />
+                        {vlog.videoUrl ? (
+                            <iframe
+                                src={vlog.videoUrl}
+                                title={vlog.title}
+                                className="w-full h-full"
+                                allowFullScreen
+                            />
+                        ) : (
+                            <img
+                                src={vlog.thumbnail}
+                                alt={vlog.title}
+                                className="w-full h-full object-cover"
+                            />
+                        )}
                     </div>
                 </div>
 
@@ -55,21 +94,16 @@ const VlogDetail = () => {
                     </h1>
 
                     <div className="flex flex-wrap gap-2 mb-4">
-                        <Badge variant="primary">{vlog.cropType}</Badge>
-                        <Badge variant="default">
-                            <MapPin className="h-3 w-3 mr-1" />
-                            {vlog.location}
-                        </Badge>
-                        <Badge variant="info">{vlog.language}</Badge>
+                        <Badge variant="primary">{vlog.category}</Badge>
                     </div>
 
                     <div className="flex items-center justify-between mb-6 pb-6 border-b border-gray-200">
                         <div className="flex items-center space-x-4">
                             <div className="w-12 h-12 rounded-full bg-primary-100 flex items-center justify-center text-primary-700 font-semibold text-lg">
-                                {vlog.farmer.charAt(0)}
+                                <User className="h-6 w-6" />
                             </div>
                             <div>
-                                <div className="font-semibold text-gray-900">{vlog.farmer}</div>
+                                <div className="font-semibold text-gray-900">{vlog.author}</div>
                                 <div className="text-sm text-gray-500">Farmer & Content Creator</div>
                             </div>
                         </div>
@@ -77,7 +111,7 @@ const VlogDetail = () => {
                         <div className="flex items-center space-x-4 text-sm text-gray-600">
                             <div className="flex items-center space-x-1">
                                 <Eye className="h-4 w-4" />
-                                <span>{vlog.views.toLocaleString()}</span>
+                                <span>{vlog.views?.toLocaleString() || 0}</span>
                             </div>
                             <div className="flex items-center space-x-1">
                                 <Clock className="h-4 w-4" />
@@ -93,7 +127,7 @@ const VlogDetail = () => {
                             onClick={() => setLiked(!liked)}
                         >
                             <ThumbsUp className="h-4 w-4 mr-2" />
-                            {liked ? 'Liked' : 'Like'} ({vlog.likes.toLocaleString()})
+                            {liked ? 'Liked' : 'Like'}
                         </Button>
                         <Button variant="outline">
                             <MessageCircle className="h-4 w-4 mr-2" />
@@ -113,23 +147,12 @@ const VlogDetail = () => {
                     </div>
 
                     {/* Description */}
-                    <div className="mb-6">
-                        <h2 className="text-lg font-semibold text-gray-900 mb-3">Description</h2>
-                        <p className="text-gray-700 leading-relaxed">{vlog.description}</p>
-                    </div>
-
-                    {/* Farming Tips */}
-                    <div>
-                        <h2 className="text-lg font-semibold text-gray-900 mb-3">Farming Tips</h2>
-                        <ul className="space-y-2">
-                            {vlog.tips.map((tip, index) => (
-                                <li key={index} className="flex items-start space-x-2">
-                                    <span className="text-primary-600 mt-1">✓</span>
-                                    <span className="text-gray-700">{tip}</span>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
+                    {vlog.description && (
+                        <div className="mb-6">
+                            <h2 className="text-lg font-semibold text-gray-900 mb-3">Description</h2>
+                            <p className="text-gray-700 leading-relaxed">{vlog.description}</p>
+                        </div>
+                    )}
                 </div>
             </div>
         </div>
