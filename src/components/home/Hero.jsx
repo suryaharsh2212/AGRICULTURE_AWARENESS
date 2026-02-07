@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../ui/Button';
+import farmLogo from '../../assets/images/farm-logo.png';
 
 const Hero = () => {
     const navigate = useNavigate();
@@ -16,6 +17,9 @@ const Hero = () => {
 
             <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28">
                 <div className="text-center space-y-8">
+                    {/* Logo */}
+
+
                     {/* Headline */}
                     <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold leading-tight">
                         Learn Farming from Real Farmers <br />
@@ -32,7 +36,7 @@ const Hero = () => {
                         <Button
                             size="lg"
                             onClick={() => navigate('/vlogs')}
-                            className="w-full sm:w-auto bg-white text-primary-700 hover:bg-primary-50 shadow-xl"
+                            className="w-full sm:w-auto bg-white text-primary-900 hover:bg-primary-50 hover:text-primary-900 shadow-xl font-semibold"
                         >
                             Watch Farming Vlogs
                         </Button>
@@ -71,12 +75,6 @@ const Hero = () => {
                 </div>
             </div>
 
-            {/* Wave Divider */}
-            <div className="absolute bottom-0 left-0 right-0">
-                <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M0 120L60 105C120 90 240 60 360 45C480 30 600 30 720 37.5C840 45 960 60 1080 67.5C1200 75 1320 75 1380 75L1440 75V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="#fafaf9" />
-                </svg>
-            </div>
         </div>
     );
 };
