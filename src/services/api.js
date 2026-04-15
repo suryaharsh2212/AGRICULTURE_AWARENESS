@@ -142,3 +142,15 @@ export const articlesAPI = {
     delete: (id) =>
         fetchWithAuth(`/articles/${id}`, { method: 'DELETE' }),
 };
+
+// ============ SURVEYS API ============
+export const surveysAPI = {
+    getAll: () =>
+        fetchWithAuth('/surveys', { method: 'GET' }),
+
+    submit: (data) =>
+        fetchWithAuth('/surveys', {
+            method: 'POST',
+            body: JSON.stringify(data),
+        }),
+};

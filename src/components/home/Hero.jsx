@@ -33,13 +33,13 @@ const Hero = () => {
 
                     {/* CTA Buttons */}
                     <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
-                        <Button
+                        {/* <Button
                             size="lg"
                             onClick={() => navigate('/vlogs')}
-                            className="w-full sm:w-auto bg-white text-black hover:bg-black hover:text-white shadow-xl font-semibold"
+                            className="w-full sm:w-auto bg-green text-black hover:bg-black hover:text-white shadow-xl font-semibold"
                         >
                             Watch Farming Vlogs
-                        </Button>
+                        </Button> */}
                         <Button
                             size="lg"
                             variant="outline"
@@ -50,11 +50,12 @@ const Hero = () => {
                         </Button>
                         <Button
                             size="lg"
-                            variant="ghost"
-                            onClick={() => navigate('/awareness')}
-                            className="w-full sm:w-auto text-white hover:bg-white/10"
+                            variant="primary"
+                            onClick={() => navigate('/survey')}
+                            className="w-full sm:w-auto border-white text-white hover:bg-white/10"
+                            
                         >
-                            Join Community
+                            Fill Farmer Survey
                         </Button>
                     </div>
 

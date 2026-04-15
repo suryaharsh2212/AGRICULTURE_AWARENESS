@@ -7,7 +7,8 @@ import {
     BookOpen,
     Sprout,
     X,
-    Menu
+    Menu,
+    Users
 } from 'lucide-react';
 
 const AdminSidebar = () => {
@@ -18,6 +19,7 @@ const AdminSidebar = () => {
         { name: 'Products', path: '/admin/products', icon: ShoppingBag },
         { name: 'Vlogs', path: '/admin/vlogs', icon: Video },
         { name: 'Articles', path: '/admin/articles', icon: BookOpen },
+        { name: 'Surveys', path: '/admin/surveys', icon: Users },
     ];
 
     const SidebarContent = () => (

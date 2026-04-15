@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { ShoppingBag, Video, BookOpen, TrendingUp } from 'lucide-react';
-import { productsAPI, vlogsAPI, articlesAPI } from '../../services/api';
+import { ShoppingBag, Video, BookOpen, TrendingUp, Users } from 'lucide-react';
+import { productsAPI, vlogsAPI, articlesAPI, surveysAPI } from '../../services/api';
 import Card from '../../components/ui/Card';
 
 const AdminDashboard = () => {
@@ -8,6 +8,7 @@ const AdminDashboard = () => {
         products: 0,
         vlogs: 0,
         articles: 0,
+        surveys: 0,
     });
     const [loading, setLoading] = useState(true);
 
@@ -17,16 +18,18 @@ const AdminDashboard = () => {
 
     const fetchStats = async () => {
         try {
-            const [productsRes, vlogsRes, articlesRes] = await Promise.all([
+            const [productsRes, vlogsRes, articlesRes, surveysRes] = await Promise.all([
                 productsAPI.getAll(),
                 vlogsAPI.getAll(),
                 articlesAPI.getAll(),
+                surveysAPI.getAll(),
             ]);
 
             setStats({
                 products: productsRes.data?.length || 0,
                 vlogs: vlogsRes.data?.length || 0,
                 articles: articlesRes.data?.length || 0,
+                surveys: surveysRes.data?.length || 0,
             });
         } catch (error) {
             console.error('Error fetching stats:', error);
@@ -58,11 +61,11 @@ const AdminDashboard = () => {
             bgColor: 'bg-green-50',
         },
         {
-            title: 'Total Content',
-            value: stats.products + stats.vlogs + stats.articles,
-            icon: TrendingUp,
-            color: 'bg-orange-500',
-            bgColor: 'bg-orange-50',
+            title: 'Survey Responses',
+            value: stats.surveys,
+            icon: Users,
+            color: 'bg-amber-500',
+            bgColor: 'bg-amber-50',
         },
     ];
 
@@ -122,10 +125,17 @@ const AdminDashboard = () => {
                     </a>
                     <a
                         href="/admin/articles"
-                        className="flex items-center space-x-3 p-3 sm:p-4 bg-green-50 hover:bg-green-100 rounded-lg transition-colors sm:col-span-2 lg:col-span-1"
+                        className="flex items-center space-x-3 p-3 sm:p-4 bg-green-50 hover:bg-green-100 rounded-lg transition-colors"
                     >
                         <BookOpen className="h-5 w-5 sm:h-6 sm:w-6 text-green-600 flex-shrink-0" />
                         <span className="font-medium text-sm sm:text-base text-green-900">Manage Articles</span>
+                    </a>
+                    <a
+                        href="/admin/surveys"
+                        className="flex items-center space-x-3 p-3 sm:p-4 bg-amber-50 hover:bg-amber-100 rounded-lg transition-colors"
+                    >
+                        <Users className="h-5 w-5 sm:h-6 sm:w-6 text-amber-600 flex-shrink-0" />
+                        <span className="font-medium text-sm sm:text-base text-amber-900">Manage Surveys</span>
                     </a>
                 </div>
             </Card>

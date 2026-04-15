@@ -10,6 +10,7 @@ import VlogDetail from './pages/VlogDetail';
 import Awareness from './pages/Awareness';
 import Marketplace from './pages/Marketplace';
 import Dashboard from './pages/Dashboard';
+import FarmerSurvey from './pages/FarmerSurvey';
 
 // Admin imports
 import AdminLogin from './pages/admin/AdminLogin';
@@ -18,6 +19,7 @@ import AdminDashboard from './pages/admin/AdminDashboard';
 import ProductManagement from './pages/admin/ProductManagement';
 import VlogManagement from './pages/admin/VlogManagement';
 import ArticleManagement from './pages/admin/ArticleManagement';
+import SurveyResponses from './pages/admin/SurveyResponses';
 
 function App() {
   return (
@@ -38,6 +40,7 @@ function App() {
             <Route path="products" element={<ProductManagement />} />
             <Route path="vlogs" element={<VlogManagement />} />
             <Route path="articles" element={<ArticleManagement />} />
+            <Route path="surveys" element={<SurveyResponses />} />
           </Route>
 
           {/* Public Routes */}
@@ -54,6 +57,7 @@ function App() {
                     <Route path="/awareness" element={<Awareness />} />
                     <Route path="/marketplace" element={<Marketplace />} />
                     <Route path="/dashboard" element={<Dashboard />} />
+                    <Route path="/survey" element={<FarmerSurvey />} />
                   </Routes>
                 </main>
                 <Footer />
