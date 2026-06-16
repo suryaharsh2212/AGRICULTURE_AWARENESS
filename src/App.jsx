@@ -8,9 +8,11 @@ import Home from './pages/Home';
 import Vlogs from './pages/Vlogs';
 import VlogDetail from './pages/VlogDetail';
 import Awareness from './pages/Awareness';
+import ArticleDetail from './pages/ArticleDetail';
 import Marketplace from './pages/Marketplace';
 import Dashboard from './pages/Dashboard';
 import FarmerSurvey from './pages/FarmerSurvey';
+import ChatbotWidget from './components/Chatbot/ChatbotWidget';
 
 // Admin imports
 import AdminLogin from './pages/admin/AdminLogin';
@@ -55,11 +57,13 @@ function App() {
                     <Route path="/vlogs" element={<Vlogs />} />
                     <Route path="/vlogs/:id" element={<VlogDetail />} />
                     <Route path="/awareness" element={<Awareness />} />
+                    <Route path="/awareness/:id" element={<ArticleDetail />} />
                     <Route path="/marketplace" element={<Marketplace />} />
                     <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="/survey" element={<FarmerSurvey />} />
                   </Routes>
                 </main>
+                <ChatbotWidget />
                 <Footer />
               </div>
             }

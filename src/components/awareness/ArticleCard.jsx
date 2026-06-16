@@ -2,6 +2,7 @@ import React from 'react';
 import Card from '../ui/Card';
 import Badge from '../ui/Badge';
 import { Calendar, User, Clock, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const ArticleCard = ({ article }) => {
     return (
@@ -42,10 +43,10 @@ const ArticleCard = ({ article }) => {
                     </div>
                 </div>
 
-                <button className="mt-4 text-primary-600 font-medium flex items-center space-x-1 hover:space-x-2 transition-all">
+                <Link to={`/awareness/${article._id}`} className="mt-4 text-primary-600 font-medium flex items-center space-x-1 hover:space-x-2 transition-all">
                     <span>Read More</span>
                     <ArrowRight className="h-4 w-4" />
-                </button>
+                </Link>
             </div>
         </Card>
     );
