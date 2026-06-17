@@ -72,10 +72,7 @@ const ChatbotWidget = () => {
     setIsLoading(true);
 
     try {
-      // Use the actual backend API URL. Make sure it's correct.
-      // We will assume backend is running on http://localhost:5000 in dev
-      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
-      const response = await fetch(`${apiUrl}/chat`, {
+      const response = await fetch(`${API_BASE_URL}/chat`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
